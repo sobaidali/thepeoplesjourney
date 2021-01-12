@@ -31,20 +31,19 @@ const Header = () => {
                 <Navbar.Brand className="ml-auto">
                     <Image 
                         src={logo} 
-                        className="" 
                     />
                 </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ml-auto" as="ul">
                             <Nav.Item as="li">
-                                <Nav.Link>HOME</Nav.Link>
+                                <Nav.Link>Home</Nav.Link>
                             </Nav.Item>
                             <Nav.Item as="li">
-                                <Nav.Link>WHAT WE DO</Nav.Link>
+                                <Nav.Link>What we do</Nav.Link>
                             </Nav.Item>
                             <Nav.Item as="li">
-                                <Nav.Link>RESOURCE LIBRARY</Nav.Link>
+                                <Nav.Link>Resource Library</Nav.Link>
                             </Nav.Item>
                         </Nav>
                         <Form inline>
