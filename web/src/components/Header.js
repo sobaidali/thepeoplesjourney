@@ -1,13 +1,42 @@
-import React from 'react'
+import {React, useState} from 'react'
 //react-bootstrap
 import { Button, Container, Form, FormControl, Image, Nav, Navbar } from 'react-bootstrap'
 //logo
 import logo from '../assets/logo.png'
+//components
+import AuthScreen from '../screens/AuthScreen'
+import FormUI from './FormUI'
+import InputUI from './InputUI' 
 
 const Header = () => {
+    const [auth, showAuth]= useState(false)
+
+    const handleSubmit = () => {
+        console.log("Hi, this is Header.")
+    }
+    
     return (
         <header>
             <div>
+                {auth 
+                ? <AuthScreen 
+                    size={'lg'}
+                    title="The People's Journey"
+                    show={auth}
+                    onHide={() => showAuth(false)}
+                    elements={(
+                        <FormUI
+                            submitBtnText="Login"
+                            submit={handleSubmit}
+                            elements={(
+                                <div>
+
+                                </div>
+                            )}
+                        />
+                    )}
+                /> 
+                : ''}
                 <Container className="d-flex align-items-center"> 
                     <div className="p-2 bd-highlight">
                         <Nav as="ul">
@@ -18,7 +47,7 @@ const Header = () => {
                     </div>
                     <div className="ml-auto p-2 bd-highlight">
                         <Nav as="ul">
-                            <Nav.Link>Join Us</Nav.Link>
+                            <Nav.Link onClick={() => showAuth(!auth)}>Join Us</Nav.Link>
                             <Nav.Link>Forum</Nav.Link>
                         </Nav>
                     </div>
@@ -26,7 +55,6 @@ const Header = () => {
             </div>
             <div>
             <Navbar bg="primary" variant="dark" expand="lg" collapseOnSelect >
-               
                 <Container>
                 <Navbar.Brand className="ml-auto">
                     <Image 

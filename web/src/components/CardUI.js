@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 //react-bootstrap
 import { Button, Card, Form, FormControl } from 'react-bootstrap'
 
-const CardFrame = ({ title, subtitle, content, text, bg, src, type, overlay }) => {
+const CardUI = ({ title, subtitle, content, text, bg, src, type, overlay }) => {
     return (
         <Card 
-            className="my-3 p-3 rounded" 
+            className="my-3 p-3 rounded border-0"
             bg={bg} 
             text={text}
             //style={{ width: '20rem' }}
@@ -14,12 +14,13 @@ const CardFrame = ({ title, subtitle, content, text, bg, src, type, overlay }) =
             <Card.Img 
                 variant="top" 
                 src={src} 
+                //className="border-0"
                 thumbnail
                 //style={{ opacity: '0.5', position: 'absolute', zIndex: '-1' }}
             />
             {overlay=="true" 
                 ? <Card.ImgOverlay>
-                    <Card.Body className="text-center" style={{verticalAlign: "bottom"}}>
+                    <Card.Body className="text-center" style={{ position: 'absolute', bottom: '30px', width: '100%'}}>
                         <Card.Title as="h2">{title}</Card.Title>
                         <Card.Text>{content}</Card.Text>
                         <Button variant="primary">Go somewhere</Button>
@@ -58,14 +59,14 @@ const CardFrame = ({ title, subtitle, content, text, bg, src, type, overlay }) =
     )
 }
 
-CardFrame.defaultProps = {
+CardUI.defaultProps = {
     overlay: "false"
 }
 
-CardFrame.propTypes = {
+CardUI.propTypes = {
     title: PropTypes.string,
     subtitle: PropTypes.string,
     text: PropTypes.string
 }
 
-export default CardFrame
+export default CardUI

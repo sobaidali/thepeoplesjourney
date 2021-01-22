@@ -1,9 +1,10 @@
 import React from 'react'
 //react-bootstrap
-import { Col, Container, Image, Jumbotron, Row } from 'react-bootstrap'
+import { Card, Col, Container, Image, Jumbotron, Row } from 'react-bootstrap'
 //components
-import CardFrame from '../components/CardFrame'
-import CarouselFrame from '../components/CarouselFrame'
+import CardUI from '../components/CardUI'
+import CarouselUI from '../components/CarouselUI'
+import Widget from '../components/Widget'
 //assets
 import breakout_room from '../assets/breakout_room.jpg'
 import login from '../assets/login.jpg'
@@ -14,10 +15,10 @@ const HomeScreen = () => {
         <>
             <Row className="mb-3">
                 <Col lg={8}>
-                    <CarouselFrame />
+                    <CarouselUI />
                 </Col>
                 <Col lg={4}>
-                <CardFrame 
+                <CardUI 
                         title='Login'
                         subtitle='Let us help you grow.'
                         //src={login}
@@ -31,19 +32,44 @@ const HomeScreen = () => {
                 </Col>
             </Row>
             <Row className="mb-3">
-                <Col lg={12}>
-                <CardFrame 
-                    src={startup_stories}
-                    title="Start up stories"
-                    content="Lorem is pum del."
-                    overlay="true"
-                    text="white"
-                />
+                <Widget heading="Stories"/>
+            </Row>
+            <Row className="mb-3">
+                <Col lg={6}>
+                <Image src={startup_stories} width="100%"/>
+                </Col>
+                <Col lg={6}>
+                    <Card className="custom-card">
+                         <Col lg={6}><Card.Img variant="top" src={startup_stories} width="100%"/></Col>
+                        <Card.Body>
+                            <Card.Title>Card Title</Card.Title>
+                            <Card.Text>
+                            Some quick example text to build on the card title and make up the bulk of
+                            the card's content.
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                    <Card className="custom-card">
+                         <Col lg={6}><Card.Img variant="top" src={startup_stories} width="100%"/></Col>
+                        <Card.Body>
+                            <Card.Title>Card Title</Card.Title>
+                            <Card.Text>
+                            Some quick example text to build on the card title and make up the bulk of
+                            the card's content.
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
                 </Col>
             </Row>
             <Row className="mb-3">
+                <Widget heading="Digests"/>
+            </Row>
+            <Row className="mb-3">
+                <Widget heading="Mentors"/>
+            </Row>
+            <Row className="mb-3">
                 <Col>
-                    <CardFrame 
+                    <CardUI 
                         title='SEARCH FOR A MENTOR'
                         subtitle='Let us help you grow.'
                         content='Browse mentor profiles to find the expertise you need. 
@@ -55,7 +81,7 @@ const HomeScreen = () => {
                     />
                 </Col>
                 <Col>
-                    <CardFrame 
+                    <CardUI 
                         title='SEARCH FOR A MENTOR'
                         subtitle='Let us help you grow.'
                         content='Browse mentor profiles to find the expertise you need. 
@@ -67,7 +93,7 @@ const HomeScreen = () => {
                     />
                 </Col>
                 <Col>
-                    <CardFrame 
+                    <CardUI 
                         title='SEARCH FOR A MENTOR'
                         subtitle='Let us help you grow.'
                         content='Browse mentor profiles to find the expertise you need. 

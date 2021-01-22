@@ -6,7 +6,7 @@ import slideone from '../assets/carousel/carousel_one.jpg'
 import slidetwo from '../assets/carousel/carousel_two.png'
 import slidethree from '../assets/carousel/carousel_three.jpg'
 
-const CarouselFrame = () => {
+const CarouselUI = () => {
     return (
         <Carousel className="mt-3">
             <Carousel.Item>
@@ -46,4 +46,4 @@ const CarouselFrame = () => {
     )
 }
 
-export default CarouselFrame
+export default CarouselUI
