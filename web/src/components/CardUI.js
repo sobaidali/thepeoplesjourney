@@ -12,7 +12,11 @@ const CardUI = ({ title, subtitle, content, text, bg, src, type, overlay, style,
             text={text}
             style={style}
         >
-            {type=="tutorial" && <small>Tutorial</small>}
+            {type=="tutorial" && 
+                <div>
+                    <small>Tutorial</small>
+                </div>
+            }
             {src && 
                 <Card.Img   
                     variant="top" 
