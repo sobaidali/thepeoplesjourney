@@ -3,21 +3,25 @@ import PropTypes from 'prop-types'
 //react-bootstrap
 import { Button, Card, Form, FormControl } from 'react-bootstrap'
 
-const CardUI = ({ title, subtitle, content, text, bg, src, type, overlay }) => {
+const CardUI = ({ title, subtitle, content, text, bg, src, type, overlay, style, border }) => {
     return (
         <Card 
-            className="my-3 p-3 rounded border-0"
+            className="my-3 p-3 rounded"
             bg={bg} 
+            border={border}
             text={text}
-            //style={{ width: '20rem' }}
+            style={style}
         >
-            <Card.Img 
-                variant="top" 
-                src={src} 
-                //className="border-0"
-                thumbnail
-                //style={{ opacity: '0.5', position: 'absolute', zIndex: '-1' }}
-            />
+            {type=="tutorial" && <small>Tutorial</small>}
+            {src && 
+                <Card.Img   
+                    variant="top" 
+                    src={src} 
+                    //className="border-0"
+                    thumbnail
+                    //style={{ opacity: '0.5', position: 'absolute', zIndex: '-1' }}
+                />
+            }
             {overlay=="true" 
                 ? <Card.ImgOverlay>
                     <Card.Body className="text-center" style={{ position: 'absolute', bottom: '30px', width: '100%'}}>
@@ -31,8 +35,8 @@ const CardUI = ({ title, subtitle, content, text, bg, src, type, overlay }) => {
                     <Card.Title>
                         {title}
                     </Card.Title>
-                    <Card.Subtitle className="mb-2">
-                        {subtitle}
+                    <Card.Subtitle className="mb-2 text-muted">
+                        <small>{subtitle}</small>
                     </Card.Subtitle>
                     <Card.Text>
                         {content}

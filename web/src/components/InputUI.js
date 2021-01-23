@@ -3,28 +3,23 @@ import PropTypes from 'prop-types'
 //react-bootstrap
 import { FormControl, InputGroup } from 'react-bootstrap'
 
-const InputUI = ({
-    name,
-    type,
-    placeholder,
-    onChange,
-    className,
-    value,
-    error,
-    children,
-    label,
-    ...props
-}) => {
+const InputUI = ({ name, type, placeholder, onChange, className, value, error, children, label, ...props }) => {
+    const handleChange = (evt) => {
+        evt.preventDefault()
+
+        onChange()
+    }
+
     return (
         <>
             <label htmlFor="basic-url">{label}</label>
-            <InputGroup className="mb-3">
+            <InputGroup className="">
                 <FormControl 
                     name={name}
                     placeholder={placeholder}
                     type={type}
                     value={value}
-                    onChange={onChange}
+                    onChange={handleChange}
                 />
             </InputGroup>
         </>

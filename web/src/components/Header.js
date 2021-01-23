@@ -3,6 +3,7 @@ import {React, useState} from 'react'
 import { Button, Container, Form, FormControl, Image, Nav, Navbar } from 'react-bootstrap'
 //logo
 import logo from '../assets/logo.png'
+import donate from '../assets/donate_thumbnail.png'
 //components
 import AuthScreen from '../screens/AuthScreen'
 import FormUI from './FormUI'
@@ -10,33 +11,14 @@ import InputUI from './InputUI'
 
 const Header = () => {
     const [auth, showAuth]= useState(false)
-
-    const handleSubmit = () => {
-        console.log("Hi, this is Header.")
-    }
     
     return (
         <header>
             <div>
-                {auth 
-                ? <AuthScreen 
-                    size={'lg'}
-                    title="The People's Journey"
-                    show={auth}
+                <AuthScreen 
+                    show={auth} 
                     onHide={() => showAuth(false)}
-                    elements={(
-                        <FormUI
-                            submitBtnText="Login"
-                            submit={handleSubmit}
-                            elements={(
-                                <div>
-
-                                </div>
-                            )}
-                        />
-                    )}
-                /> 
-                : ''}
+                    />
                 <Container className="d-flex align-items-center"> 
                     <div className="p-2 bd-highlight">
                         <Nav as="ul">
@@ -47,8 +29,9 @@ const Header = () => {
                     </div>
                     <div className="ml-auto p-2 bd-highlight">
                         <Nav as="ul">
-                            <Nav.Link onClick={() => showAuth(!auth)}>Join Us</Nav.Link>
-                            <Nav.Link>Forum</Nav.Link>
+                            <Nav.Link style={{padding: "0.5rem 0.5rem"}} onClick={() => showAuth(true)}>Join us</Nav.Link>
+                            <Nav.Link style={{padding: "0.5rem 0.5rem"}}>Forum</Nav.Link>
+                            <Nav.Link style={{padding: "0.5rem 0.5rem"}}><Image src={donate}/></Nav.Link>
                         </Nav>
                     </div>
                 </Container>
@@ -68,10 +51,16 @@ const Header = () => {
                                 <Nav.Link>Home</Nav.Link>
                             </Nav.Item>
                             <Nav.Item as="li">
-                                <Nav.Link>What we do</Nav.Link>
+                                <Nav.Link>About us</Nav.Link>
                             </Nav.Item>
                             <Nav.Item as="li">
-                                <Nav.Link>Resource Library</Nav.Link>
+                                <Nav.Link>Tutorials</Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item as="li">
+                                <Nav.Link>Podcasts</Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item as="li">
+                                <Nav.Link>Books</Nav.Link>
                             </Nav.Item>
                         </Nav>
                         <Form inline>
