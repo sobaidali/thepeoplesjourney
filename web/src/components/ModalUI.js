@@ -2,7 +2,7 @@ import {React, useState} from 'react'
 //react-bootstrap
 import { Modal } from 'react-bootstrap';
 
-const ModalUI = ({ size, onHide, show, title, elements }) => {
+const ModalUI = ({ size, onHide, show, title, children }) => {
     //const [lgShow, setLgShow] = useState(false);
  
     return (
@@ -17,7 +17,7 @@ const ModalUI = ({ size, onHide, show, title, elements }) => {
                 {title}
             </Modal.Title>
             </Modal.Header>
-            <Modal.Body>{elements}</Modal.Body>
+            <Modal.Body>{children}</Modal.Body>
           </Modal>  
         </>
     )

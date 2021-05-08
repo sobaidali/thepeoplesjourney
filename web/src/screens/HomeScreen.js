@@ -2,9 +2,9 @@ import React from 'react'
 //react-bootstrap
 import { Card, Col, Container, Image, Jumbotron, Row } from 'react-bootstrap'
 //components
-import CardUI from '../components/CardUI'
-import CarouselUI from '../components/CarouselUI'
-import Widget from '../components/Widget'
+import CardUI from '../components/CardUI';
+import Widget from '../components/Widget';
+import CarouselUI from '../components/CarouselUI';
 //assets
 import breakout_room from '../assets/breakout_room.jpg'
 import login from '../assets/login.jpg'

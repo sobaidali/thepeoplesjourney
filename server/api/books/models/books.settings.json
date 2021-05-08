@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "books",
+  "info": {
+    "name": "Books",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "book_name": {
+      "type": "string",
+      "required": true
+    },
+    "book_author_name": {
+      "type": "string",
+      "required": true
+    },
+    "book_genre": {
+      "type": "string",
+      "required": true
+    },
+    "book_url": {
+      "type": "string",
+      "required": true
+    },
+    "book_image": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": true,
+      "pluginOptions": {}
+    },
+    "book_description": {
+      "type": "string"
+    }
+  }
+}

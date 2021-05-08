@@ -1,0 +1,52 @@
+.featured-card-img {
+    position: relative;
+    border-radius: 1.25rem;
+    overflow: hidden;
+    z-index: 1;
+    cursor: pointer;
+  }
+  
+  .featured-card-img:before {
+    content: "";
+    position: absolute;
+    display: block;
+    height: 100%;
+    z-index: 999;
+    width: 100%;
+    bottom: 0;
+    background: #000;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 1) -20%, rgba(0, 0, 0, 0) 40%);
+  }
+  
+  .featured-card-img > img {
+    display: block;
+    width: 100%;
+    transition: -webkit-transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
+  }
+
+  .featured-card-img:hover {
+    transform: scale(1.05); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    transition: transform .7s ease;
+  }
+
+  
+  .profile-link {
+    position: absolute;
+    z-index: 99;
+    right: 14px;
+    cursor: pointer;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    background: rgba(0, 0, 0, 0.36);
+    border-radius: 50px;
+    top: 15px;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .profile-link svg {
+    color: #fff;
+  }

@@ -1,9 +1,9 @@
 import React from 'react'
 //react-bootstrap
-import { CardColumns, Container, Jumbotron } from 'react-bootstrap'
+import { CardColumns, Container, Jumbotron } from 'react-bootstrap';
 //components
-import CardUI from '../components/CardUI'
-import PaginationUI from '../components/PaginationUI'
+import CardUI from '../CardUI';
+import PaginationUI from '../PaginationUI';
 
 const TutorialScreen = () => {
     return (

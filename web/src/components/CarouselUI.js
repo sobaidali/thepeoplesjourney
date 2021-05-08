@@ -4,7 +4,7 @@ import { Carousel } from 'react-bootstrap'
 //assets
 import slideone from '../assets/carousel/carousel_one.jpg'
 import slidetwo from '../assets/carousel/carousel_two.png'
-import slidethree from '../assets/carousel/carousel_three.jpg'
+import slidethree from '../assets/carousel/carousel_three.jpg';
 
 const CarouselUI = () => {
     return (

@@ -5,9 +5,10 @@ import { Button, Container, Form, FormControl, Image, Nav, Navbar } from 'react-
 import logo from '../assets/logo.png'
 import donate from '../assets/donate_thumbnail.png'
 //components
-import AuthScreen from '../screens/AuthScreen'
-import FormUI from './FormUI'
-import InputUI from './InputUI' 
+// import AuthScreen from '../screens/AuthScreen'
+// import FormUI from './FormUI'
+// import InputUI from './InputUI' 
+import { Link, NavLink } from 'react-router-dom'
 
 const Header = () => {
     const [auth, showAuth]= useState(false)
@@ -15,10 +16,6 @@ const Header = () => {
     return (
         <header>
             <div>
-                <AuthScreen 
-                    show={auth} 
-                    onHide={() => showAuth(false)}
-                    />
                 <Container className="d-flex align-items-center"> 
                     <div className="p-2 bd-highlight">
                         <Nav as="ul">
@@ -29,7 +26,7 @@ const Header = () => {
                     </div>
                     <div className="ml-auto p-2 bd-highlight">
                         <Nav as="ul">
-                            <Nav.Link style={{padding: "0.5rem 0.5rem"}} onClick={() => showAuth(true)}>Join us</Nav.Link>
+                            <NavLink style={{padding: "0.5rem 0.5rem"}} to='login' >Join us</NavLink>
                             <Nav.Link style={{padding: "0.5rem 0.5rem"}}>Forum</Nav.Link>
                             <Nav.Link style={{padding: "0.5rem 0.5rem"}}><Image src={donate}/></Nav.Link>
                         </Nav>
@@ -48,19 +45,22 @@ const Header = () => {
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ml-auto" as="ul">
                             <Nav.Item as="li">
-                                <Nav.Link>Home</Nav.Link>
+                                <Nav.Link as={Link} to="/">Home</Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item as="li">
+                                <Nav.Link as={Link} to="/tutorials">Tutorials</Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item as="li">
+                                <Nav.Link as={Link} to="/tutorials">Podcasts</Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item as="li">
+                                <Nav.Link as={Link} to="/books">Books</Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item as="li">
+                                <Nav.Link as={Link} to="/tutors">Find a Mentor</Nav.Link>
                             </Nav.Item>
                             <Nav.Item as="li">
                                 <Nav.Link>About us</Nav.Link>
-                            </Nav.Item>
-                            <Nav.Item as="li">
-                                <Nav.Link>Tutorials</Nav.Link>
-                            </Nav.Item>
-                            <Nav.Item as="li">
-                                <Nav.Link>Podcasts</Nav.Link>
-                            </Nav.Item>
-                            <Nav.Item as="li">
-                                <Nav.Link>Books</Nav.Link>
                             </Nav.Item>
                         </Nav>
                         <Form inline>
