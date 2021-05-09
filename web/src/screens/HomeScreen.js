@@ -9,6 +9,7 @@ import CarouselUI from '../components/CarouselUI';
 import breakout_room from '../assets/breakout_room.jpg'
 import login from '../assets/login.jpg'
 import startup_stories from '../assets/startup.jpg'
+import Login from '../components/auth/Login';
 
 const HomeScreen = () => {
     return (
@@ -18,17 +19,7 @@ const HomeScreen = () => {
                     <CarouselUI />
                 </Col>
                 <Col lg={4}>
-                <CardUI 
-                        title='Login'
-                        subtitle='Let us help you grow.'
-                        //src={login}
-                        //content='Browse mentor profiles to find the expertise you need. 
-                        //    You can meet with one or several mentors via email, video 
-                        //    chat or face-to-face in your chapter.'
-                        text='white'
-                        bg='primary'
-                        type="login"
-                    />
+                    <Login />
                 </Col>
             </Row>
             <Row className="mb-3">
