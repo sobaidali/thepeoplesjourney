@@ -33,7 +33,7 @@ function Login() {
                 </Form>
                 <div>
                     <NavLink className="link" to="signup">
-                        <small>Does not have an account? Please sign up</small>
+                        <small style={{ marginLeft: '115px' }}>Does not have an account? Please sign up</small>
                     </NavLink>
                 </div>
             </div>

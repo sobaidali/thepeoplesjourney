@@ -1,9 +1,11 @@
 import React from 'react'
+import './style.css'
 //react-bootstrap
-import { CardColumns, Container, Jumbotron } from 'react-bootstrap';
+import { Card, CardColumns, Container, Jumbotron } from 'react-bootstrap';
 //components
 import CardUI from '../CardUI';
 import PaginationUI from '../PaginationUI';
+import { ArrowUpRight } from 'react-feather';
 
 const TutorialScreen = () => {
     return (
@@ -19,92 +21,27 @@ const TutorialScreen = () => {
             </Jumbotron>
             <Container fluid>
                 <CardColumns>
-                    <CardUI 
+                    <Card
+                        className="my-3 p-3 rounded card-tutor"
                         bg="white"
                         text="primary"
-                        border="light"
+                        border="dark"
                         style={{ width: '20rem' }}
-                        type="tutorial"
-                        title="Binary Heaps and Priority Queues via JavaScript."
-                        subtitle="Javascript"
-                    />
-                    <CardUI 
-                        bg="white"
-                        text="primary"
-                        border="light"
-                        style={{ width: '20rem' }}
-                        type="tutorial"
-                        title="Binary Heaps and Priority Queues via JavaScript."
-                        subtitle="Javascript"
-                    />
-                    <CardUI 
-                        bg="white"
-                        text="primary"
-                        border="light"
-                        style={{ width: '20rem' }}
-                        type="tutorial"
-                        title="Binary Heaps and Priority Queues via JavaScript."
-                        subtitle="Javascript"
-                    />
-                    <CardUI 
-                        bg="white"
-                        text="primary"
-                        border="light"
-                        style={{ width: '20rem' }}
-                        type="tutorial"
-                        title="Binary Heaps and Priority Queues via JavaScript."
-                        subtitle="Javascript"
-                    />
-                    <CardUI 
-                        bg="white"
-                        text="primary"
-                        border="light"
-                        style={{ width: '20rem' }}
-                        type="tutorial"
-                        title="Binary Heaps and Priority Queues via JavaScript."
-                        subtitle="Javascript"
-                    />
-                    <CardUI 
-                        bg="white"
-                        text="primary"
-                        border="light"
-                        style={{ width: '20rem' }}
-                        type="tutorial"
-                        title="Binary Heaps and Priority Queues via JavaScript."
-                        subtitle="Javascript"
-                    />
-                    <CardUI 
-                        bg="white"
-                        text="primary"
-                        border="light"
-                        style={{ width: '20rem' }}
-                        type="tutorial"
-                        title="Binary Heaps and Priority Queues via JavaScript."
-                        subtitle="Javascript"
-                    />
-                    <CardUI 
-                        bg="white"
-                        text="primary"
-                        border="light"
-                        style={{ width: '20rem' }}
-                        type="tutorial"
-                        title="Binary Heaps and Priority Queues via JavaScript."
-                        subtitle="Javascript"
-                    />
-                    <CardUI 
-                        bg="white"
-                        text="primary"
-                        border="light"
-                        style={{ width: '20rem' }}
-                        type="tutorial"
-                        title="Binary Heaps and Priority Queues via JavaScript."
-                        subtitle="Javascript"
-                    />
+                    >
+                        <div>
+                            <small>Tutorial</small>
+                            <span className="profile-link">
+                                <ArrowUpRight size={16} />
+                            </span>
+                            <Card.Body>
+                                <Card.Title>Binary Heaps and Priority Queues via JavaScript.</Card.Title>
+                                <Card.Subtitle className="mb-2 text-muted">
+                                    <small>JavaScript</small>
+                                </Card.Subtitle>
+                            </Card.Body>
+                        </div>
+                    </Card>
                 </CardColumns>
-
-                <div className="mx-auto" style={{width: "50%"}}>
-                    <PaginationUI />
-                </div>
             </Container>
         </>
     )

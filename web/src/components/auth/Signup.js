@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 //react-bootstrap
 import { Button, Form, FormControl, FormGroup, Image, InputGroup } from 'react-bootstrap';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 //css
 import './style.css';
 //assets
@@ -8,12 +10,13 @@ import loginAvatar from '../../assets/login.png'
 import { NavLink } from 'react-router-dom';
 import Axios from '../../axios';
 
-function Signup() {
+toast.configure();
+
+const Signup = () => {
     const [state, setstate] = useState({})
 
     const handleChange = (e) => {
-        const [name, value] = e.target;
-
+        const { name, value } = e.target;
 
         setstate(prevState => ({
             ...prevState,
@@ -23,20 +26,30 @@ function Signup() {
 
     const handleSubmit = async(e) => {
         e.preventDefault();
+        try {
+            const { data } = await Axios.post('/users', state);
 
-        console.log(state)
-
-        const { data } = await Axios.post('/users', state);
-        console.log("This is data: ", data);
+            toast.dark('You have successfully registered!', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+            });
+        } catch (err) {
+            console.error(err);
+        }
     }
 
     return (
         <div className="login_main">
+            <ToastContainer />
             <div className="login_paper">
                 <Image className="login_avatar" src={loginAvatar}/>
                 <h1 className="login_heading">Sign up</h1>
                 <Form className="login_form" onSubmit={handleSubmit}>
-                    <Form.Group controlId="formBasicEmail">
+                    <Form.Group>
                         <Form.Label>First Name</Form.Label>
                         <Form.Control
                             name="first_name" 
@@ -57,7 +70,7 @@ function Signup() {
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>User Name</Form.Label>
                         <Form.Control 
-                            name="user_name"
+                            name="username"
                             type="text" 
                             onChange={handleChange} 
                             placeholder="User Name" 
@@ -88,7 +101,7 @@ function Signup() {
                 </Form>
                 <div>
                     <NavLink className="link" to="login">
-                        <small>Already have an account? Please login</small>
+                        <small style={{ marginLeft: '135px' }}>Already have an account? Please login</small>
                     </NavLink>
                 </div>
             </div>

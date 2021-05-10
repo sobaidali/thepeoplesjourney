@@ -3638,14 +3638,18 @@ display: block;
     z-index: 99;
     right: 14px;
     cursor: pointer;
-    height: 50px;
-    width: 50px;
+    height: 45px;
+    width: 45px;
     display: flex;
-    background: rgba(0, 0, 0, 0.36);
+    background: rgb(221 150 150 / 59%);
     border-radius: 50px;
     top: 15px;
     justify-content: center;
     align-items: center;
+}
+  
+  .profile-link svg {
+    color: #fff;
   }
   
   .profile-link svg {
