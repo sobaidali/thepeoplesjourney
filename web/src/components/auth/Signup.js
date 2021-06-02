@@ -27,9 +27,15 @@ const Signup = () => {
     const handleSubmit = async(e) => {
         e.preventDefault();
         try {
-            const { data } = await Axios.post('/users', state);
+            const res1 = await Axios.post('/auth/local/register', {
+                first_name: state.first_name,
+                last_name: state.last_name,
+                username: state.username,
+                email: state.email,
+                password: state.password,
+            });
 
-            toast.dark('You have successfully registered!', {
+            toast.dark('You have successfully registered! Please confirm your email.', {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,

@@ -1,0 +1,90 @@
+.sidebar {
+    height: 85vh;
+    width: 225px;
+    border-right: 1px solid rgba(66, 69, 81, 0.4);
+    font-style: #1C054D;
+}
+
+.text-mes {
+    padding-left: 14px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    font-style: #1C054D;
+}
+
+.side-navigation-panel .side-navigation-panel-select .side-navigation-panel-select-wrap .side-navigation-panel-select-option .side-navigation-panel-select-option-wrap .side-navigation-panel-select-option-text {
+    font-weight: 350 !important;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.settings {
+    position: absolute;
+    bottom: 35px;
+}
+
+.ort {
+    width: fit-content;
+}
+
+.frow {
+    width: 1250px !important;
+}
+
+.post-btn {
+    width: 115px;
+}
+
+.ui.comments .comment .text {
+    margin: 8px 2px 8px !important;
+    font-size: 1em !important;
+    word-wrap: break-word !important;
+    color: rgba(0,0,0,.87) !important;
+    line-height: 0.3 !important;
+}
+
+.ui.labeled.icon.button, .ui.labeled.icon.buttons .button {
+    position: relative;
+    padding-left: 2.171429em!important;
+    padding-right: 0.7em!important;
+}
+
+.ui.labeled.icon.button, .ui.labeled.icon.buttons .button {
+    position: relative;
+    padding-left: 3.071429em!important;
+    padding-right: 1.5em!important;
+    float: right !important;
+    background-color: darkslateblue !important;
+}
+
+.ui.labeled.icon.button, .ui.labeled.icon.buttons .button:hover {
+    background-color: darkslateblue !important;
+}
+
+.ui.feed:last-child {
+    margin-bottom: 35px !important;
+}
+
+.ui.feed:first-child {
+    margin-top: 8px !important;
+}
+
+.commentgrp {
+    background-color: #e6e6fa66;
+    margin-left: 3px;
+}
+
+.ui.comments .comment {
+    position: relative;
+    background: 0 0;
+    margin: .5em 0.3em 0px !important;
+    padding: .5em 0 0;
+    border: none;
+    border-top: none;
+    line-height: 1.2;
+}
+
+.ui.comments .reply.form textarea {
+    font-size: 1em;
+    height: 5em !important;
+}
