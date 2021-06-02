@@ -66,6 +66,15 @@
     "last_name": {
       "type": "string",
       "required": true
+    },
+    "status": {
+      "type": "string"
+    },
+    "room": {
+      "type": "string"
+    },
+    "socket_id": {
+      "type": "biginteger"
     }
   }
 }

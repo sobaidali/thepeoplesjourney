@@ -6,8 +6,14 @@ import 'react-minimal-side-navigation/lib/ReactMinimalSideNavigation.css';
 import './style.css';
 import { Card, Col, Row } from 'react-bootstrap';
 import { Button, Checkbox, Comment, Feed, Form, Header, Icon } from 'semantic-ui-react'
+//talkjs
+import Talk from "talkjs";
+import { dummyUsers } from "./users";
+
 
 const Sidebar = () => {
+    var chatbox;
+    var container;
     let commentArr = [
       {
         avatar: 'https://react.semantic-ui.com/images/avatar/small/matt.jpg',
@@ -36,6 +42,50 @@ const Sidebar = () => {
       setRep(value)
     }
 
+    const handleClick = (userId) => {
+
+      /* Retrieve the two users that will participate in the conversation */
+      // const { currentUser } = this.state;
+      const user = dummyUsers.find(user => user.id === userId)
+      
+      /* Session initialization code */
+      Talk.ready
+      .then(() => {
+      /* Create the two users that will participate in the conversation */
+      const me = new Talk.User({
+          id: "2",
+          name: "Kelvin Samson",
+          email: "kelvin@sample.com",
+          photoUrl: "https://randomuser.me/api/portraits/men/32.jpg",
+          role: "Member",
+          info: "Product Designer at Facebook",
+          welcomeMessage: "Hey there! Love to chat :-)"
+      });
+      const other = new Talk.User(user)
+      
+      /* Create a talk session if this does not exist. Remember to replace tthe APP ID with the one on your dashboard */
+      if (!window.talkSession) {
+      window.talkSession = new Talk.Session({
+      appId: "tV9jNpMX",
+      me: me
+      });
+      }
+      
+      /* Get a conversation ID or create one */
+      const conversationId = Talk.oneOnOneId(me, other);
+      const conversation = window.talkSession.getOrCreateConversation(conversationId);
+      
+      /* Set participants of the conversations */
+      conversation.setParticipant(me);
+      conversation.setParticipant(other);
+      
+      /* Create and mount chatbox in container */
+      chatbox = window.talkSession.createChatbox(conversation);
+      chatbox.mount(container);
+      })
+      .catch(e => console.error(e));
+      }
+
     const handleReplySubmit = (e) => {
       e.preventDefault();
       let arr = [...cmnt];
@@ -53,7 +103,7 @@ const Sidebar = () => {
     return (
         <div className="ort">
           <Row>
-            <Col>
+            <Col lg={2}>
             <div className="sidebar">
             <div>
               <p className="text-mes">Welcome to our community</p>
@@ -122,23 +172,14 @@ const Sidebar = () => {
           </div>
         </div>
             </Col>
-            <Col>
-                <Row className="frow my-3">
-                  <Col>
-                    {/* <Form.Control type="text" placeholder="What is on your mind?" />
-                    <Form.Text className="text-muted">
-                      You are part of our community.
-                    </Form.Text> */}
-                  </Col>
-                  <Col>
-                    {/* <Button className="post-btn" variant="primary" type="submit">
-                      Post
-                    </Button> */}
-                  </Col>
-                </Row>
-                <Row>
-                  <Col>
-                  <Feed>
+            <Col lg={5}>
+          <Row className="frow my-3">
+            <Col lg={7}>
+              <Form>
+                <Form.TextArea label='Hello, please post what is on your mind.' placeholder='Share with you community.' />
+                <Button style={{float: "right"}} labelPosition='left' icon='edit' size="small" type="submit" content='Create Post' primary />
+              </Form>
+              <Feed>
                   <Feed.Event>
                     <Feed.Label>
                       <img src='https://react.semantic-ui.com/images/avatar/small/elliot.jpg' />
@@ -160,7 +201,7 @@ const Sidebar = () => {
                         />
                         </Feed.Like>
                       </Feed.Meta>
-                        <Comment.Group className="commentgrp" collapsed={collapsed}>
+                        <Comment.Group size='mini' className="commentgrp" collapsed={collapsed}>
                           <Header as='h5' dividing>
                             Comments
                           </Header>
@@ -187,7 +228,7 @@ const Sidebar = () => {
                               placeholder="Comment here..."
                               onChange={handleReplyChange}
                             />
-                            <Button className="rep-btn" size="small" type="submit" content='Add Reply' labelPosition='left' icon='edit' primary />
+                            <Button className="rep-btn" size="small" type="submit" content='Add Reply' primary />
                           </Form>
                         </Comment.Group>
                     </Feed.Content>
@@ -289,7 +330,40 @@ const Sidebar = () => {
                     </Feed.Content>
                   </Feed.Event>
                 </Feed>
+                  
+            </Col>
+            <Col lg={5}>
+                  <div className="users">
+                    <div className="users-container">
+                    <ul>
+                    { dummyUsers.map(user =>
+                    <li key={user.id} className="user">
+                    <picture className="user-picture">
+                    <img src={user.photoUrl} alt={`${user.name}`} />
+                    </picture>
+                    <div className="user-info-container">
+                    <div className="user-info">
+                    <h4>{user.name}</h4>
+                    <p>{user.info}</p>
+                    </div>
+                    <div className="user-action">
+<button onClick={(userId) => handleClick(user.id)}>Message</button>
+</div>
+                    </div>
+                    </li>
+                    )}
+                    </ul>
+                    <div className="chatbox-container" ref={c => container = c}>
+<div id="talkjs-container" style={{height: "300px"}}><i></i></div>
+</div>
+                    </div>
+                    </div>
                   </Col>
+          </Row>
+          <Row>
+                  <Col lg={7}>
+                  </Col>
+                  
                 </Row>
             </Col>
           </Row>

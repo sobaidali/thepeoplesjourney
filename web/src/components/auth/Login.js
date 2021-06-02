@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 //react-bootstrap
 import { Button, Form, FormControl, FormGroup, Image, InputGroup } from 'react-bootstrap';
 //css
@@ -6,8 +6,47 @@ import './style.css';
 //assets
 import loginAvatar from '../../assets/login.png'
 import { NavLink } from 'react-router-dom';
+//toast
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Login() {
+    const [credentials, setCredentials] = useState({});
+
+    const onHandleChange = (e) => {
+        const { name, value } = e.target
+
+        setCredentials(prevState => ({
+            ...prevState,
+            [name]: value,
+        }))
+    }
+
+    const onHandleSubmit = (e) => {
+        e.preventDefault();
+
+        try {
+            // await Axios.post('/auth/local/register', {
+            //     first_name: state.first_name,
+            //     last_name: state.last_name,
+            //     username: state.username,
+            //     email: state.email,
+            //     password: state.password,
+            // });
+
+            toast.dark('You have successfully registered! Please confirm your email.', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+            });
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
     return (
         <div className="login_main">
             <div className="login_paper">

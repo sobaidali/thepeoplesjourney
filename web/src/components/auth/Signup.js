@@ -27,7 +27,7 @@ const Signup = () => {
     const handleSubmit = async(e) => {
         e.preventDefault();
         try {
-            const res1 = await Axios.post('/auth/local/register', {
+            await Axios.post('/auth/local/register', {
                 first_name: state.first_name,
                 last_name: state.last_name,
                 username: state.username,
