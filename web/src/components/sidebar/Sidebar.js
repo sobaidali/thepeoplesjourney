@@ -5,7 +5,7 @@ import {Navigation} from 'react-minimal-side-navigation';
 import 'react-minimal-side-navigation/lib/ReactMinimalSideNavigation.css';
 import './style.css';
 import { Card, Col, Row } from 'react-bootstrap';
-import { Button, Comment, Feed, Form, Header, Icon } from 'semantic-ui-react'
+import { Button, Checkbox, Comment, Feed, Form, Header, Icon } from 'semantic-ui-react'
 
 const Sidebar = () => {
     let commentArr = [
@@ -25,6 +25,9 @@ const Sidebar = () => {
 
     const [cmnt, setComment] = useState([])
     const [rep, setRep] = useState("");
+    const [collapsed, setCollapsed] = useState(true);
+
+    const handleCheckbox = (e, { checked }) => setCollapsed(!collapsed)
 
     const handleReplyChange = (e) => {
       e.preventDefault()
@@ -150,10 +153,14 @@ const Sidebar = () => {
                           <Icon name='like' />4 Likes
                         </Feed.Like>
                         <Feed.Like>
-                            Comment
+                        <Checkbox
+                          defaultChecked
+                          label='Collapse comments'
+                          onChange={handleCheckbox}
+                        />
                         </Feed.Like>
                       </Feed.Meta>
-                        <Comment.Group className="commentgrp">
+                        <Comment.Group className="commentgrp" collapsed={collapsed}>
                           <Header as='h5' dividing>
                             Comments
                           </Header>
@@ -180,7 +187,7 @@ const Sidebar = () => {
                               placeholder="Comment here..."
                               onChange={handleReplyChange}
                             />
-                            <Button type="submit" content='Add Reply' labelPosition='left' icon='edit' primary />
+                            <Button className="rep-btn" size="small" type="submit" content='Add Reply' labelPosition='left' icon='edit' primary />
                           </Form>
                         </Comment.Group>
                     </Feed.Content>

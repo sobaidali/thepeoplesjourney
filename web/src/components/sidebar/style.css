@@ -88,3 +88,11 @@
     font-size: 1em;
     height: 5em !important;
 }
+
+.rep-btn {
+    position: relative;
+    padding-left: 2.171429em!important;
+    padding-right: 0.7em!important;
+    float: right !important;
+    background-color: darkslateblue !important;
+}
