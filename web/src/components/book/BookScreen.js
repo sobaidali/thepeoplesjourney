@@ -25,7 +25,7 @@ const BookScreen = () => {
         books();
     }, [])
     return (
-        <>
+        <Container>
             <Jumbotron fluid>
                 <Container>
                     <h1 className="text-center" style={{color: "#1C054D"}}>Books and everything</h1>
@@ -177,7 +177,7 @@ const BookScreen = () => {
                     ))}
                 </Row>
             </Container>
-        </>
+        </Container>
     )
 }
 

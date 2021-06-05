@@ -12,8 +12,16 @@ import Axios from '../../axios';
 
 toast.configure();
 
-const Signup = () => {
-    const [state, setstate] = useState({})
+const Signup = (props) => {
+    const [state, setstate] = useState({
+        first_name: "",
+        last_name: "",
+        username: "",
+        email: "",
+        password: "",
+        confirmed: false
+    })
+    const [errors, setErrors] = useState("");
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -27,15 +35,41 @@ const Signup = () => {
     const handleSubmit = async(e) => {
         e.preventDefault();
         try {
+            const { first_name, last_name, username, email, password } = state;
+            if (
+                first_name.length==0 || 
+                last_name.length==0 || 
+                username.length == 0 || 
+                email.length == 0 || 
+                password.length == 0
+                ) {
+                return setErrors("Please fill all the fields as they all are required for the registration.");
+            }
+
             await Axios.post('/auth/local/register', {
                 first_name: state.first_name,
                 last_name: state.last_name,
                 username: state.username,
                 email: state.email,
                 password: state.password,
+                confirmed: false
             });
 
-            toast.dark('You have successfully registered! Please confirm your email.', {
+            
+            // Axios.post(`http://localhost:1337/auth/send-email-confirmation`, {
+            //     email: state.email,
+            // })
+            // .then(response => {
+            //     // Handle success.
+            //     console.log('Your user received an email');
+            // })
+            // .catch(error => {
+            //     // Handle error.
+            //     console.error('An error occured:', error.response);
+            // });
+
+            // props.history.push('/login');
+            toast.dark('You have successfully registered! Please login.', {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -43,8 +77,16 @@ const Signup = () => {
                 pauseOnHover: true,
                 draggable: true,
             });
+            setErrors("")
         } catch (err) {
-            console.error(err);
+            toast.dark('This email is already registered! Please try with another email.', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+            });
         }
     }
 
@@ -99,7 +141,8 @@ const Signup = () => {
                             onChange={handleChange} 
                             placeholder="Password" 
                         />
-                        <Form.Text><small>Must be at least 6 characters, both upper and lower case letters, a number, and a special character.</small></Form.Text>
+                        {/* <Form.Text><small>Must be at least 6 characters, both upper and lower case letters, a number, and a special character.</small></Form.Text> */}
+                    {errors.length > 0 && <small style={{color: "red"}}>{errors}</small>}
                     </Form.Group>
                     <Button className="login_btn" variant="primary" type="submit">
                         Signup

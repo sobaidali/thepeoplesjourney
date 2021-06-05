@@ -1,38 +1,38 @@
-export const dummyUsers = [
+export const Users = [
     {
     id: "2",
-    name: "Kelvin Samson",
-    email: "kelvin@sample.com",
-    photoUrl: "https://randomuser.me/api/portraits/men/32.jpg",
+    name: "Syed Obaidullah Ali",
+    email: "obaidullah_syed@hotmail.com",
+    photoUrl: "https://react.semantic-ui.com/images/avatar/small/elliot.jpg",
     role: "Member",
-    info: "Product Designer at Facebook",
+    info: "Software Engineer at 10Pearls",
     welcomeMessage: "Hey there! Love to chat :-)"
     },
     {
     id: "3",
-    name: "Annabel Stone",
+    name: "Inam Us Salam",
     email: "annie@sample.com",
-    photoUrl: "https://randomuser.me/api/portraits/women/65.jpg",
+    photoUrl: "https://react.semantic-ui.com/images/avatar/small/justen.jpg",
     role: "Member",
-    info: "Digital Marketer at Microsoft",
+    info: "Merchant Ops Analyst at Careem",
     welcomeMessage: "Hey there! Love to chat :-)"
     },
     {
     id: "4",
-    name: "Grace Loveday",
+    name: "Amna Ali",
     email: "grace@sample.com",
-    photoUrl: "https://randomuser.me/api/portraits/women/44.jpg",
+    photoUrl: "https://react.semantic-ui.com/images/avatar/small/helen.jpg",
     role: "Member",
-    info: "Product Designer at Google",
+    info: "Software Engineer at Blue River",
     welcomeMessage: "Hey there! Love to chat :-)"
     },
     {
     id: "5",
-    name: "Angela Jobs",
+    name: "Syed Khubaib Ali",
     email: "angela@sample.com",
-    photoUrl: "https://pbs.twimg.com/profile_images/834493671785525249/XdLjsJX_.jpg",
+    photoUrl: "https://react.semantic-ui.com/images/avatar/small/joe.jpg",
     role: "Member",
-    info: "Software Engineer at TalkJS",
+    info: "Software Engineer at Qavi Technologies",
     welcomeMessage: "Hey there! Love to chat :-)"
     },
     ]

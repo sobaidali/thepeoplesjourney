@@ -8,66 +8,65 @@ import { Card, Col, Row } from 'react-bootstrap';
 import { Button, Checkbox, Comment, Feed, Form, Header, Icon } from 'semantic-ui-react'
 //talkjs
 import Talk from "talkjs";
-import { dummyUsers } from "./users";
+import { Users } from "./users";
+
+//toast
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; 
 
 
-const Sidebar = () => {
+const Sidebar = (props) => {
     var chatbox;
     var container;
-    let commentArr = [
-      {
-        avatar: 'https://react.semantic-ui.com/images/avatar/small/matt.jpg',
-        author: 'Matt',
-        datetime: 'Today at 5:42PM',
-        text: 'This has been very useful for my research. Thanks as well!',
-      },
-      {
-        avatar: 'https://react.semantic-ui.com/images/avatar/small/matt.jpg',
-        author: 'Matt',
-        datetime: 'Today at 5:42PM',
-        text: 'This has been very useful for my research. Thanks as well!',
-      }
-    ];
 
-    const [cmnt, setComment] = useState([])
+    const [pst, setPst] = useState([]);
+    const [cmnt, setComment] = useState([]);
+    const [post, setPost] = useState("");
     const [rep, setRep] = useState("");
     const [collapsed, setCollapsed] = useState(true);
 
     const handleCheckbox = (e, { checked }) => setCollapsed(!collapsed)
 
+    const handlePostChange = (e) => {
+      e.preventDefault();
+
+      const { value } = e.target;
+
+      setPost(value);
+    }
+
     const handleReplyChange = (e) => {
       e.preventDefault()
 
       const { value } = e.target;
-      setRep(value)
+      setRep(value);
     }
 
     const handleClick = (userId) => {
-
       /* Retrieve the two users that will participate in the conversation */
       // const { currentUser } = this.state;
-      const user = dummyUsers.find(user => user.id === userId)
+      const user = Users.find(user => user.id === userId)
       
       /* Session initialization code */
       Talk.ready
       .then(() => {
       /* Create the two users that will participate in the conversation */
       const me = new Talk.User({
-          id: "2",
-          name: "Kelvin Samson",
-          email: "kelvin@sample.com",
-          photoUrl: "https://randomuser.me/api/portraits/men/32.jpg",
-          role: "Member",
-          info: "Product Designer at Facebook",
-          welcomeMessage: "Hey there! Love to chat :-)"
+        id: "2",
+        name: "Syed Obaidullah Ali",
+        email: "obaidullah_syed@hotmail.com",
+        photoUrl: "https://react.semantic-ui.com/images/avatar/small/elliot.jpg",
+        role: "Member",
+        info: "Software Engineer at 10Pearls",
+        welcomeMessage: "Hey there! Love to chat :-)"
       });
       const other = new Talk.User(user)
       
       /* Create a talk session if this does not exist. Remember to replace tthe APP ID with the one on your dashboard */
       if (!window.talkSession) {
-      window.talkSession = new Talk.Session({
-      appId: "tV9jNpMX",
-      me: me
+        window.talkSession = new Talk.Session({
+        appId: "tV9jNpMX",
+        me: me
       });
       }
       
@@ -86,14 +85,29 @@ const Sidebar = () => {
       .catch(e => console.error(e));
       }
 
+    const handlePostSubmit = (e) => {
+      e.preventDefault();
+
+      let arr = [...pst];
+
+      let obj = {
+          avatar: 'https://react.semantic-ui.com/images/avatar/small/elliot.jpg',
+          author: 'Obaidullah',
+          datetime: 'Just now',
+          text: post,
+      }
+
+      setPst([...arr, obj]);
+    }
+
     const handleReplySubmit = (e) => {
       e.preventDefault();
       let arr = [...cmnt];
 
       let obj = {
-          avatar: 'https://react.semantic-ui.com/images/avatar/small/matt.jpg',
-          author: 'Matt',
-          datetime: 'Today at 5:42PM',
+          avatar: 'https://react.semantic-ui.com/images/avatar/small/elliot.jpg',
+          author: 'Obaidullah',
+          datetime: 'Just now',
           text: rep,
       }
 
@@ -112,7 +126,9 @@ const Sidebar = () => {
               // you can use your own router's api to get pathname
               activeItemId="/management/members"
               onSelect={({itemId}) => {
-              // maybe push to the route
+              if (itemId==="/another/class") {
+                window.location.href = "http://localhost:4200/teacher/true"
+              }
             }}
             items={[
               {
@@ -149,7 +165,7 @@ const Sidebar = () => {
                   },
                   {
                     title: "Join class",
-                    itemId: "/another/teams"
+                    itemId: "/another/class"
                   },
                   {
                     title: "White board",
@@ -161,13 +177,32 @@ const Sidebar = () => {
           />
         <div className="settings">
           <Navigation
+            onSelect={({itemId}) => {
+              if (itemId==="/settings/signout") {
+                props.history.push("/login");
+
+                setTimeout(() => {
+                  toast.dark('You have successfully logged out! please come back later.', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+                }, 500);
+              }}}
             items={[
               {
                 title: "Settings",
                 itemId: "/settings",
-                elemBefore: () => <Raicons name="activity" />
-              }
-            ]}
+                elemBefore: () => <Raicons name="activity" />,
+                subNav: [
+                  {
+                    title: "Sign out",
+                    itemId: "/settings/signout"
+                  }]
+            }]}
           />
           </div>
         </div>
@@ -175,8 +210,8 @@ const Sidebar = () => {
             <Col lg={5}>
           <Row className="frow my-3">
             <Col lg={7}>
-              <Form>
-                <Form.TextArea label='Hello, please post what is on your mind.' placeholder='Share with you community.' />
+              <Form onSubmit={handlePostSubmit}>
+                <Form.TextArea label='Hello, please post what is on your mind.' placeholder='Share with you community.' onChange={handlePostChange}/>
                 <Button style={{float: "right"}} labelPosition='left' icon='edit' size="small" type="submit" content='Create Post' primary />
               </Form>
               <Feed>
@@ -201,7 +236,7 @@ const Sidebar = () => {
                         />
                         </Feed.Like>
                       </Feed.Meta>
-                        <Comment.Group size='mini' className="commentgrp" collapsed={collapsed}>
+                        <Comment.Group size='small' className="commentgrp" collapsed={collapsed}>
                           <Header as='h5' dividing>
                             Comments
                           </Header>
@@ -215,9 +250,6 @@ const Sidebar = () => {
                                   <div>{curr.datetime}</div>
                                 </Comment.Metadata>
                                 <Comment.Text>{curr.text}</Comment.Text>
-                                <Comment.Actions>
-                                  <Comment.Action>Reply</Comment.Action>
-                                </Comment.Actions>
                               </Comment.Content>
                             </Comment>
                             </>
@@ -231,51 +263,6 @@ const Sidebar = () => {
                             <Button className="rep-btn" size="small" type="submit" content='Add Reply' primary />
                           </Form>
                         </Comment.Group>
-                    </Feed.Content>
-                  </Feed.Event>
-
-                  <Feed.Event>
-                    <Feed.Label image='https://react.semantic-ui.com/images/avatar/small/helen.jpg' />
-                    <Feed.Content>
-                      <Feed.Summary>
-                        <a>Helen Troy</a> added <a>2 new illustrations</a>
-                        <Feed.Date>4 days ago</Feed.Date>
-                      </Feed.Summary>
-                      <Feed.Extra images>
-                        <a>
-                          <img src='https://react.semantic-ui.com/images/wireframe/image.png' />
-                        </a>
-                        <a>
-                          <img src='https://react.semantic-ui.com/images/wireframe/image.png' />
-                        </a>
-                      </Feed.Extra>
-                      <Feed.Meta>
-                        <Feed.Like>
-                          <Icon name='like' />1 Like
-                        </Feed.Like>
-                        <Feed.Like>
-                            Comment
-                        </Feed.Like>
-                      </Feed.Meta>
-                    </Feed.Content>
-                  </Feed.Event>
-
-                  <Feed.Event>
-                    <Feed.Label image='https://react.semantic-ui.com/images/avatar/small/jenny.jpg' />
-                    <Feed.Content>
-                      <Feed.Summary
-                        date='2 Days Ago'
-                        user='Jenny Hess'
-                        content='add you as a friend'
-                      />
-                      <Feed.Meta>
-                        <Feed.Like>
-                          <Icon name='like' />8 Likes
-                        </Feed.Like>
-                        <Feed.Like>
-                            Comment
-                        </Feed.Like>
-                      </Feed.Meta>
                     </Feed.Content>
                   </Feed.Event>
 
@@ -302,33 +289,26 @@ const Sidebar = () => {
                       </Feed.Meta>
                     </Feed.Content>
                   </Feed.Event>
-
-                  <Feed.Event>
-                    <Feed.Label image='https://react.semantic-ui.com/images/avatar/small/justen.jpg' />
+                  
+                  {pst.map(curr => (
+                    <Feed.Event>
+                    <Feed.Label image={curr.avatar} />
                     <Feed.Content>
                       <Feed.Summary>
-                        <a>Justen Kitsune</a> added <a>2 new photos</a> of you
-                        <Feed.Date>4 days ago</Feed.Date>
+                        <a>{curr.author}</a> posted on his page
+                        <Feed.Date>{curr.datetime}</Feed.Date>
                       </Feed.Summary>
-                      <Feed.Extra images>
-                        <a>
-                          <img src='https://react.semantic-ui.com/images/wireframe/image.png' />
-                        </a>
-                        <a>
-                          <img src='https://react.semantic-ui.com/images/wireframe/image.png' />
-                        </a>
+                      <Feed.Extra text>
+                            {curr.text}
                       </Feed.Extra>
                       <Feed.Meta>
                         <Feed.Like>
-                          <Icon name='like' />
-                          41 Likes
-                        </Feed.Like>
-                        <Feed.Like>
-                            Comment
+                          <Icon name='like' />5 Likes
                         </Feed.Like>
                       </Feed.Meta>
                     </Feed.Content>
                   </Feed.Event>
+                  ))}
                 </Feed>
                   
             </Col>
@@ -336,7 +316,7 @@ const Sidebar = () => {
                   <div className="users">
                     <div className="users-container">
                     <ul>
-                    { dummyUsers.map(user =>
+                    { Users.map(user =>
                     <li key={user.id} className="user">
                     <picture className="user-picture">
                     <img src={user.photoUrl} alt={`${user.name}`} />
@@ -347,15 +327,15 @@ const Sidebar = () => {
                     <p>{user.info}</p>
                     </div>
                     <div className="user-action">
-<button onClick={(userId) => handleClick(user.id)}>Message</button>
-</div>
+                      <button onClick={(userId) => handleClick(user.id)}>Message</button>
+                    </div>
                     </div>
                     </li>
                     )}
                     </ul>
                     <div className="chatbox-container" ref={c => container = c}>
-<div id="talkjs-container" style={{height: "300px"}}><i></i></div>
-</div>
+                      <div id="talkjs-container" style={{height: "300px"}}><i></i></div>
+                    </div>
                     </div>
                     </div>
                   </Col>

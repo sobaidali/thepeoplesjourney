@@ -9,7 +9,7 @@ import { ArrowUpRight } from 'react-feather';
 
 const TutorialScreen = () => {
     return (
-        <>
+        <Container>
             <Jumbotron fluid>
                 <Container>
                     <h1 className="text-center" style={{color: "#1C054D"}}>Tutorials</h1>
@@ -43,7 +43,7 @@ const TutorialScreen = () => {
                     </Card>
                 </CardColumns>
             </Container>
-        </>
+        </Container>
     )
 }
 
